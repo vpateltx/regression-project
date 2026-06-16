@@ -1,7 +1,9 @@
+import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_absolute_error
+
 
 data = pd.read_csv("youtube recommendation dataset.csv")
 
@@ -28,3 +30,11 @@ print("----------------------------------")
 print("R² Score:", r2)
 print("Mean Absolute Error:", mae)
 print("Predicted watch time for a 1000-second video:", predicted_watch_time[0])
+
+plt.scatter(X_test, y_test, label="Actual Data")
+plt.plot(X_test, predictions, label="Prediction Line")
+plt.xlabel("Video Duration")
+plt.ylabel("Watch Time")
+plt.title("Video Duration vs Watch Time")
+plt.legend()
+plt.show()
