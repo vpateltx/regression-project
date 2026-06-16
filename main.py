@@ -1,8 +1,14 @@
+import pandas as pd
 from sklearn.linear_model import LinearRegression
 
-# Sample training data
-X = [[2], [4], [6], [8]]
-y = [65, 75, 85, 95]
+# Load dataset
+data = pd.read_csv("youtube recommendation dataset.csv")
+
+# Features
+X = data[["video_duration"]]
+
+# Target
+y = data["watch_time"]
 
 # Create model
 model = LinearRegression()
@@ -10,7 +16,9 @@ model = LinearRegression()
 # Train model
 model.fit(X, y)
 
-# Make prediction
-prediction = model.predict([[10]])
+# Predict watch time for a 1000-second video
+prediction = model.predict(pd.DataFrame([[1000]], columns=["video_duration"]))
 
-print("Predicted Score:", prediction[0])
+print("Predicted Watch Time:")
+print(prediction[0])
+
